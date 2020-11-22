@@ -1,0 +1,26 @@
+﻿@model TextField
+@{
+    ViewBag.Title = Model.MetaTitle;
+    ViewBag.Description = Model.MetaDescription;
+    ViewBag.Keywords = Model.MetaKeywords;
+}
+
+<div>
+    <section id="banner">
+        <div class="content">
+            <header>
+                <h1>
+                    @Model.Title
+                </h1>
+                <p>@Model.Subtitle</p>
+            </header>
+            <p>@Html.Raw(Model.Text)</p>
+            <ul class="actions">
+                <li><a asp-area="" asp-controller="Home" asp-action="Index" class="button big">На главную</a></li>
+            </ul>
+        </div>
+        <span class="image object">
+            <img src="~/images/@Model.TitleImagePath" alt="" />
+        </span>
+    </section>
+</div>

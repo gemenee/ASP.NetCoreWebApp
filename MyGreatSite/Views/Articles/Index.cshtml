@@ -1,0 +1,36 @@
+﻿@model ListViewModel
+
+@{
+    TextField textField = ViewBag.TextField;
+
+    ViewBag.Title = textField.MetaTitle;
+    ViewBag.Description = textField.MetaDescription;
+    ViewBag.Keywords = textField.MetaKeywords;
+}
+
+    <div>
+        <header class="major">
+            <h2>@textField.Title</h2>
+            <h3>@textField.Subtitle</h3>
+
+        </header>
+        <div class="posts">
+            @foreach (Article item in Model.Items)
+            {
+                <article>
+                    <div class="content">
+                        <a asp-area="" asp-controller="Articles" asp-action="Index" asp-route-id="@item.Id" class="image"><img src="~/images/@item.TitleImagePath" alt="@item.Title" /></a>
+                        <h3>@item.Subtitle</h3>
+                        <ul class="actions">
+                            <li><a asp-area="" asp-controller="Articles" asp-action="Index" asp-route-id="@item.Id" class="button">Читать статью  </a></li>
+                        </ul>
+                    </div>
+                </article>
+            }
+
+        </div>
+        <div class="row gtr-200">
+            <div page-model="@Model.PagingInfo" page-action="Index"></div>
+        </div>
+
+    </div>

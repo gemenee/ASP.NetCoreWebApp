@@ -1,0 +1,29 @@
+﻿@model Feedback
+
+@{
+    ViewBag.Title = Model.MetaTitle;
+    ViewBag.Description = Model.MetaDescription;
+    ViewBag.Keywords = Model.MetaKeywords;
+}
+
+    <div>
+        <h2>
+            @Model.Title
+        </h2>
+        <h2>
+            @Model.Subtitle
+        </h2>
+        <div>
+            <p>
+                <span class="image left"><img class="img-block-avatar" src="~/images/@Model.TitleImagePath" /></span>
+                @Html.Raw(Model.Text)
+            </p>
+
+        </div>
+        <hr />
+        <div>
+            <ul class="actions">
+                <li><a asp-area="" asp-action="Index" asp-controller="FeedBack" class="button big">Назад</a></li>
+            </ul>
+        </div>
+    </div>

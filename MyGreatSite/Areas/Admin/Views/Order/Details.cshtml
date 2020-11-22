@@ -1,0 +1,67 @@
+﻿@model Order
+@{ 
+    ViewBag.Title = "Просмотр заказа";
+}
+
+    <div>
+        <h4>Заказ № @Model.OrderId</h4>
+        @{ if (Model.Shipped)
+            {
+                <label>Отправлен</label>
+            }
+            else
+            {
+                <label>Ожидает отправки</label>
+            }
+        }
+        <h4></h4>
+        <hr />
+        <table class="table-bordered table-stripped">
+            <tr>
+                <th>Имя</th>
+                <th>Страна</th>
+                <th>Область/регион</th>
+                <th>Город</th>
+                <th>Адрес</th>
+                <th>Подробности</th>
+                <th></th>
+            </tr>
+            <tr>
+                <td>@Model.Name</td>
+                <td>@Model.Country</td>
+                <td>@Model.State</td>
+                <td>@Model.City</td>
+                <td>@Model.Line1</td>
+                <th>Товар</th>
+                <th>Количество</th>
+                <td>
+                    <form asp-action="MarkShipped" method="post">
+                        <input type="hidden" name="orderId" value="@Model.OrderId" />
+                        @if (!Model.Shipped)
+                        {
+                            <button type="submit" class="cke_btn_locked btn-sm btn-danger">Отправить заказ</button>
+                        }
+                        else
+                        {<label>Заказ отправлен</label>}
+                    </form>
+                </td>
+            </tr>
+            @foreach (CartLine line in Model.Lines)
+            {
+                <tr>
+                    <td colspan="5"></td>
+                    <td>@line.Product.Title</td>
+                    <td>@line.Quantity</td>
+                    <td></td>
+                </tr>
+            }
+        </table>
+    </div>
+
+
+
+<div>
+    @*<a asp-action="Edit" asp-route-id="@Model.OrderId">Edit</a> |*@
+    <a asp-action="Index">Назад к списку заказов</a>
+</div>
+

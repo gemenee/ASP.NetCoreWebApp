@@ -1,0 +1,96 @@
+﻿@model Product
+@{
+    string strTitle = "Редактировать товар";
+    ViewBag.Title = strTitle;
+}
+
+<script src="~/js/ckeditor/ckeditor.js"></script>
+
+<div>
+    <h2>@strTitle</h2>
+    <div>
+        <section id="banner">
+            <div class="content">
+                <header>
+                    <h2>
+                        @Model.Title
+                    </h2>
+                </header>
+                <div class="row">
+                    <form asp-area="Admin" asp-controller="Products" asp-action="Edit" method="post" enctype="multipart/form-data">
+                        <input type="hidden" asp-for="Id" />
+                        <input type="hidden" asp-for="DateAdded" />
+                        <input type="hidden" asp-for="TitleImagePath" />
+
+                        <div asp-validation-summary="All"></div>
+                        <div class="col-6 col-12">
+                            <div class="div-box">
+                                <label asp-for="Title"></label>
+                                <input asp-for="Title" placeholder="наименование товара" />
+                                <span asp-validation-for="Title"></span>
+                            </div>
+                            <br />
+                            <div class="div-box">
+                                <label asp-for="Subtitle"></label>
+                                <input asp-for="Subtitle" placeholder="краткое описание товара" />
+                                <span asp-validation-for="Subtitle"></span>
+                            </div>
+                            <br />
+                            <div class="div-box">
+                                <label asp-for="Price"></label>
+                                <input asp-for="Price" />
+                                <span asp-validation-for="Price"></span>
+                            </div>
+                            <br />
+                            <div class="div-box">
+                                <label asp-for="Text"></label>
+                                <textarea asp-for="Text"></textarea>
+                                <span asp-validation-for="Text"></span>
+                            </div>
+                            <br />
+                            <div>
+                                <label asp-for="TitleImagePath"></label>
+                                <input type="file" name="titleImageFile" id="titleImageFile" />
+                            </div>
+
+                            <div class="div-box">
+                                <label asp-for="MetaTitle"></label>
+                                <input asp-for="MetaTitle" />
+                                <span asp-validation-for="MetaTitle"></span>
+                            </div>
+                            <div class="div-box">
+                                <label asp-for="MetaDescription"></label>
+                                <input asp-for="MetaDescription" />
+                                <span asp-validation-for="MetaDescription"></span>
+                            </div>
+                            <div class="div-box">
+                                <label asp-for="MetaKeywords"></label>
+                                <input asp-for="MetaKeywords" />
+                                <span asp-validation-for="MetaKeywords"></span>
+                            </div>
+                            <br />
+                            <input type="submit" value="Сохранить" />
+                        </div>
+                    </form>
+                </div>
+                <ul class="actions">
+                    <li><a asp-area="Admin" asp-action="Index" asp-controller="Home" class="button big">Отмена</a></li>
+                </ul>
+                </div>
+                <div>
+                    <img class="img-block-small" src="~/images/@Model.TitleImagePath" />
+                </div>
+        </section>
+    </div>
+
+
+</div>
+
+
+
+<script>
+    window.onload = function() {
+        var newCKEdit = CKEDITOR.replace('@Html.IdFor(x=>x.Text)');
+        newCKEdit.updateElement();
+    }
+</script>

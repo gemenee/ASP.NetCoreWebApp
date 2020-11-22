@@ -1,0 +1,26 @@
+﻿@model ProductsListViewModel
+@{
+    TextField textField = ViewBag.TextField;
+
+    ViewBag.Title = textField.MetaTitle;
+    ViewBag.Description = textField.MetaDescription;
+    ViewBag.Keywords = textField.MetaKeywords;
+}
+
+    <div>
+        <header class="major">
+            <h2>@textField.Title</h2>
+        </header>
+        <div class="posts">
+            @foreach (Product entity in Model.Products)
+            {
+                @await Html.PartialAsync("ProductSummary", entity)
+
+            }
+        </div>
+        <div class="row gtr-200">
+            <div page-model="@Model.PagingInfo" page-action="Index"></div>
+        </div>
+
+        
+    </div>

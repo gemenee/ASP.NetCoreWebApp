@@ -1,0 +1,29 @@
+﻿@model Product
+@{
+    ViewBag.Title = Model.MetaTitle;
+    ViewBag.Description = Model.MetaDescription;
+    ViewBag.Keywords = Model.MetaKeywords;
+}
+
+    <div>
+        <section id="banner">
+            <div class="content">
+                <header>
+                    <h2>
+                        @Model.Title
+                    </h2>
+                    <h3>
+                        Цена: @Model.Price
+                    </h3>
+                </header>
+                <p> @Html.Raw(Model.Text)</p>
+                <ul class="actions">
+                    <li><a asp-area="" asp-controller="Products" asp-action="Index" asp-route-id="" class="button">Назад</a></li>
+                    <li><a asp-area="" asp-controller="Cart" method="post" asp-action="AddToCart" asp-route-id="@Model.Id" asp-route-returnurl="@ViewContext.HttpContext.Request.PathAndQuery()" class="button">Купить</a></li>
+                </ul>
+            </div>
+            <span class="image object">
+                <img  src="~/images/@Model.TitleImagePath" alt="">
+            </span>
+        </section>
+    </div>

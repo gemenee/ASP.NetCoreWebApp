@@ -1,0 +1,45 @@
+﻿<!DOCTYPE HTML>
+
+
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    @await Html.PartialAsync("MetatagsPartial")
+    @await Html.PartialAsync("CssPartial")
+</head>
+<body class="is-preload">
+
+    <!-- Wrapper -->
+    <div id="wrapper">
+
+
+        <!-- Main -->
+        <div id="main">
+            <div class="inner">
+                <!-- Header -->
+                @await Html.PartialAsync("HeaderPartial")
+
+                <!-- Banner -->
+                @*@await Html.PartialAsync("BannerPartial")
+
+                <!-- Section1 -->
+                <section>
+                    @await Html.PartialAsync("Section1Partial")
+                </section>*@
+                @RenderBody()
+                <!-- Section2 -->
+            </div>
+        </div>
+
+        <!-- Sidebar -->
+
+
+        @await Html.PartialAsync("SidebarPartial")
+
+    </div>
+    <!-- Scripts -->
+    @await Html.PartialAsync("ScriptsPartial")
+
+</body>
+</html>

@@ -1,0 +1,14 @@
+﻿@model Product
+
+    <article>
+        <a asp-area="" asp-controller="Products" asp-action="Index" asp-route-id="@Model.Id" class="image"><img class="img-block-small" src="~/images/@Model.TitleImagePath" alt="@Model.Title" /></a>
+        <input type="hidden" asp-for="Id" />
+        <h3>@Model.Subtitle</h3>
+        <h3>@Model.Price.ToString("C2")</h3>
+        <p>@Html.Raw(Model.Text)</p>
+        <ul class="actions">
+            <li><a asp-area="" asp-controller="Products" asp-action="Index" asp-route-id="@Model.Id" class="button">Подробнее</a></li>
+            <li><a asp-area="" asp-controller="Cart" method="post" asp-action="AddToCart" asp-route-id="@Model.Id" asp-route-returnurl="@ViewContext.HttpContext.Request.PathAndQuery()" class="button">Купить</a></li>
+        </ul>
+    </article>
+ 

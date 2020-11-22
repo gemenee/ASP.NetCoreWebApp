@@ -1,0 +1,98 @@
+﻿@model IQueryable<Product>
+
+@{
+    string strTitle = "Страница администратора";
+    ViewBag.Title = strTitle;
+}
+
+    <div>
+        <h1>@strTitle</h1>
+        @if (TempData["Message"] != null)
+        {
+            <div class="alert alert-success">@TempData["Message"]</div>
+            <script>
+        alert(@TempData["Message"])
+            </script>
+        }
+
+        <div class="div-box">
+            <h3>Редактировать страницы сайта</h3>
+            <div>
+                <ul>
+                    <li>
+                        <a asp-area="Admin" asp-controller="TextFields" asp-action="Edit" asp-route-codeWord="PageIndex">Главная</a>
+                    </li>
+                    <li>
+                        <a asp-area="Admin" asp-controller="TextFields" asp-action="Edit" asp-route-codeWord="PageProducts">Наши товары</a>
+                    </li>
+                    <li>
+                        <a asp-area="Admin" asp-controller="TextFields" asp-action="Edit" asp-route-codeWord="PageContacts">Контакты</a>
+                    </li>
+                    <li>
+                        <a asp-area="Admin" asp-controller="TextFields" asp-action="Edit" asp-route-codeWord="PageAbout">Обо мне</a>
+                    </li>
+                    <li>
+                        <a asp-area="Admin" asp-controller="TextFields" asp-action="Edit" asp-route-codeWord="PageArticles">Статьи</a>
+                    </li>
+                    <li>
+                        <a asp-area="Admin" asp-controller="TextFields" asp-action="Edit" asp-route-codeWord="PageFeedback">Отзывы</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div>
+            <ul>
+                <li>
+                    <a asp-area="Admin" asp-controller="Order" asp-action="Index" asp-route-id="">Управление заказами</a>
+                </li>
+                <li>
+                    <a asp-area="Admin" asp-controller="Articles" asp-action="Index" asp-route-id="">Добавить/Редактировать статьи</a>
+                </li>
+                <li>
+                    <a asp-area="Admin" asp-controller="Feedback" asp-action="Index" asp-route-id="">Добавить/Редактировать отзывы</a>
+                </li>
+            </ul>
+        </div>
+
+        <div class="div-box">
+            <form asp-area="" asp-controller="Account" asp-action="Logout" method="post">
+                <input type="submit" value="Выйти" />
+            </form>
+        </div>
+
+        <div>
+            <h4>Наши товары</h4>
+            <div>
+                <a asp-area="Admin" asp-controller="Products" asp-action="Edit" asp-route-id="" class="button">Добавить товар</a>
+            </div>
+            <br />
+            <div>
+                @if (Model.Any())
+                {
+                    <div class="row">
+                        @foreach (var p in Model)
+                        {
+                            <div class="col-6 col-12-large">
+                                <h3>@p.Title</h3>
+                                <p>@p.Subtitle</p>
+
+                                <ul class="actions">
+                                    <li><a asp-area="Admin" asp-controller="Products" asp-action="Edit" asp-route-id="@p.Id" class="button big">Редактировать</a></li>
+                                    <li>
+                                        <form style="display: inline-block;" id="form-@p.Id" asp-area="Admin" asp-controller="Products" asp-action="Delete" method="post">
+                                            <input type="hidden" name="id" value="@p.Id" />
+                                            <a href="#" onclick="document.getElementById('form-@p.Id').submit();" class="button big">удалить</a>
+                                        </form>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div сlass="col-4 col-12-small">
+                                <img class="img-block" src="~/images/@p.TitleImagePath" />
+                            </div>
+                        }
+                    </div>
+                }
+            </div>
+        </div>
+    </div>

@@ -1,0 +1,36 @@
+﻿@model IQueryable<Article>
+
+@{
+    TextField textField = ViewBag.TextField;
+
+    ViewBag.Title = textField.MetaTitle;
+    ViewBag.Description = textField.MetaDescription;
+    ViewBag.Keywords = textField.MetaKeywords;
+}
+
+<header class="major">
+    <h2>@textField.Title</h2>
+</header>
+<ul class="actions">
+    <li><a asp-area="Admin" asp-controller="Home" asp-action="Index" asp-route-id="" class="button">Назад</a></li>
+    <li><a asp-area="Admin" asp-controller="Articles" asp-action="Edit" asp-route-id="" class="button">Добавить статью</a></li>
+</ul>
+<div class="posts">
+    @foreach (Article entity in Model)
+    {
+        <article>
+            <a asp-area="Admin" asp-controller="Articles" asp-action="Edit" asp-route-id="@entity.Id" class="image"><img src="~/images/@entity.TitleImagePath" alt="@entity.Title" /></a>
+            <h3>@entity.Subtitle</h3>
+            <p>@entity.Text</p>
+            <ul class="actions">
+                <li><a asp-area="Admin" asp-controller="Articles" asp-action="Edit" asp-route-id="@entity.Id" class="button">Редактировать</a></li>
+                
+
+            </ul>
+        </article>
+    }
+</div>
+<ul class="actions">
+    <li><a asp-area="Admin" asp-controller="Home" asp-action="Index" asp-route-id="" class="button">Назад</a></li>
+    <li><a asp-area="Admin" asp-controller="Articles" asp-action="Edit" asp-route-id="" class="button">Добавить статью</a></li>
+</ul>

@@ -1,0 +1,40 @@
+﻿@model IQueryable<Feedback>
+
+@{
+    TextField textField = ViewBag.TextField;
+
+    ViewBag.Title = textField.MetaTitle;
+    ViewBag.Description = textField.MetaDescription;
+    ViewBag.Keywords = textField.MetaKeywords;
+}
+
+<header class="major">
+    <h2>@textField.Title</h2>
+</header>
+<div>
+    <a class="Button" asp-area="Admin" asp-controller="Feedback" asp-action="Edit" asp-route-id="">Добавить отзыв</a>
+</div>
+<div class="posts">
+    @foreach (var entity in Model)
+    {
+    <article>
+        @if (!(entity.TitleImagePath == null))
+        {<a asp-area="Admin" asp-controller="Feedback" asp-action="Edit" asp-route-id="@entity.Id" class="image"><img class="img-block-avatar" src="~/images/@entity.TitleImagePath" alt="@entity.Title" /></a>}
+        <h3>@entity.Subtitle</h3>
+        @{ if (entity.IsChecked)
+            {
+                <div class="col-6 col-12-small">Проверено модератором</div>
+            }
+            else
+            {
+                <div class="col-6 col-12-small"><b>Не проверено модератором!</b></div>
+                }
+        }
+        <p>@Html.Raw(entity.Text)</p>
+        <ul class="actions">
+            <li><a asp-area="Admin" asp-controller="Feedback" asp-action="Edit" asp-route-id="@entity.Id" class="button">Редактировать</a></li>
+        </ul>
+    </article>
+    }
+</div>
+<a asp-area="Admin" asp-controller="Home" asp-action="Index" asp-route-id="" class="button">Назад</a>

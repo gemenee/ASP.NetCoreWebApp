@@ -1,0 +1,12 @@
+@model TextField
+
+    <div>
+        @Html.Raw(Model.Text)
+
+        <ul class="contact">
+            <li class="icon solid fa-envelope">Электронная почта: <a href="#">@Config.CompanyEmail</a></li>
+            <li class="icon solid fa-phone">Телефон: @Config.CompanyPhone</li>
+            <li class="fab solid fa-whatsapp"></>WhatsApp: @Config.CompanyPhone</li>
+        </ul>
+
+    </div>

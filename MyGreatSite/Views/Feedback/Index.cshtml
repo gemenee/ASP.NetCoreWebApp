@@ -1,0 +1,39 @@
+﻿@model ListViewModel
+
+@{
+    TextField textField = ViewBag.TextField;
+
+    ViewBag.Title = textField.MetaTitle;
+    ViewBag.Description = textField.MetaDescription;
+    ViewBag.Keywords = textField.MetaKeywords;
+}
+
+
+<header class="major">
+    <h2>@textField.Title</h2>
+    <a class="button" asp-area="" asp-controller="Feedback" asp-action="Write">Оставить отзыв</a>
+    <br />
+</header>
+
+<div class="posts">
+    @foreach (Feedback entity in Model.Items)
+    {
+        if (entity.IsChecked)
+        {
+            <article>
+                <div class="content">
+                    <a asp-area="" asp-controller="Feedback" asp-action="Index" asp-route-id="@entity.Id" class="image"><img class="img-block-avatar" src="~/images/@entity.TitleImagePath" alt="@entity.Title" /></a>
+                    <h3>@entity.Subtitle</h3>
+                    <p>@Html.Raw(entity.Text)</p>
+                    <ul class="actions">
+                        <li><a asp-area="" asp-controller="Feedback" asp-action="Index" asp-route-id="@entity.Id" class="button">Подробнее</a></li>
+                    </ul>
+                </div>
+            </article>
+        }
+    }
+
+</div>
+<div class="row gtr-200">
+    <div page-model="@Model.PagingInfo" page-action="Index"></div>
+</div>
