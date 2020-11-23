@@ -13,7 +13,9 @@ namespace MyGreatSite.Domain
     public class AppDbContext : IdentityDbContext<IdentityUser>
     {
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
-        { }
+        {
+            Database.EnsureCreated();
+        }
 
         public DbSet<FileEntity> Files { get; set; }
         public DbSet<TextField> TextFields { get; set; }
