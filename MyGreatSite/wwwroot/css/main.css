@@ -2139,17 +2139,16 @@ button,
     margin: 0 0 2em 4em;
     width: 50%; }
     #banner .image img {
-        height: 100%;
-        -moz-object-fit: cover;
-        -webkit-object-fit: cover;
-        -ms-object-fit: cover;
-        object-fit: cover;
-        -moz-object-position: center;
-        -webkit-object-position: center;
-        -ms-object-position: center;
-        object-position: center;
-        width: 100%; 
-    }
+      height: 100%;
+      -moz-object-fit: cover;
+      -webkit-object-fit: cover;
+      -ms-object-fit: cover;
+      object-fit: cover;
+      -moz-object-position: center;
+      -webkit-object-position: center;
+      -ms-object-position: center;
+      object-position: center;
+      width: 100%; }
   @media screen and (orientation: portrait) {
     #banner {
       -moz-flex-direction: column-reverse;
@@ -2272,27 +2271,3 @@ button,
     border-top: 0;
     margin-top: 0;
     padding-top: 0; }
-
-.img-block {
-    display: block;
-    max-width: 100%;
-    margin: 0 auto;
-}
-.img-block1 {
-    height: auto;
-    width: 100%;
-    /* еще больше контроля с max-width */
-    max-width: 720px;
-}
-
-.img-block-small {
-    display: inline-block;
-    height: auto;
-    max-width: 480px;
-}
-
-.img-block-avatar {
-    display: inline-block;
-    height: auto;
-    max-width: 200px;
-}

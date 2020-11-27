@@ -20,13 +20,8 @@ function setup() {
 	aLevel = 1;
 	dTime = 0.5;
 	dLevel = 1;
-	
 
 	polySynth1 = new p5.PolySynth();
-
-	let cnv = createCanvas(800, 200);
-	strokeWeight(4);
-	stroke(255);
 	polySynth1.setADSR(0,01, 1, 0.1, 0.5);
 
 	//Keyboard mapping

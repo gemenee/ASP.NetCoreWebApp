@@ -1,0 +1,53 @@
+*, *::before, *::after {
+  box-sizing: border-box;
+
+}
+
+
+
+body {
+  background-color: #143F6B;
+  margin: 0;
+  display: block;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.keyButton{
+	font-size: 8pt;
+	color: #525252;
+	height: calc(var(--keyWidth) * 6.3);
+	width: var(--keyWidth);
+border: 1px solid #333;
+}
+
+.white{
+background-color: #fff1cb; 
+}
+
+.black {
+	--blackKeyWidth: calc(var(--keyWidth) * 0.39);
+	width: var(--blackKeyWidth);
+	height: calc(var(--blackKeyWidth) * 9.44);
+margin-left: calc(var(--blackKeyWidth)/ -2);
+margin-right: calc(var(--blackKeyWidth)/ -2);
+background-color: #272727;
+z-index: 2;
+   }
+.keyboard{
+	display: flex;
+	justify-content: center;
+}
+.keys{
+}
+
+.white.active{
+	background-color: #fffff0;
+}
+
+.black.active{
+	background-color: #0e0e0f;
+}
+
+
